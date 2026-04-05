@@ -22,11 +22,11 @@ function Login() {
     try {
       if (isRegister) {
         const payload = { ...formData, interests: formData.interests.split(',').map(i => i.trim()) };
-        const res = await axios.post('http://localhost:5000/api/register', payload);
+        const res = await axios.post('/api/register', payload);
         localStorage.setItem('user', JSON.stringify(res.data.user));
         navigate('/dashboard');
       } else {
-        const res = await axios.post('http://localhost:5000/api/login', { email: formData.email, password: formData.password });
+        const res = await axios.post('/api/login', { email: formData.email, password: formData.password });
         localStorage.setItem('user', JSON.stringify(res.data.user));
         navigate('/dashboard');
       }

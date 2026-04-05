@@ -19,7 +19,7 @@ function Dashboard() {
     }
     setCurrentUser(user);
     // Fetch suggestions initially
-    axios.get(`http://localhost:5000/api/users/search?q=a`) 
+    axios.get(`/api/users/search?q=a`) 
       .then(res => setSuggestedUsers(res.data.slice(0, 4)))
       .catch(err => console.error(err));
   }, [navigate]);
@@ -31,7 +31,7 @@ function Dashboard() {
       return;
     }
     try {
-      const res = await axios.get(`http://localhost:5000/api/users/search?q=${searchQuery}&currentUserId=${currentUser?._id}`);
+      const res = await axios.get(`/api/users/search?q=${searchQuery}&currentUserId=${currentUser?._id}`);
       setSearchResults(res.data);
     } catch (err) {
       console.error(err);
@@ -40,7 +40,7 @@ function Dashboard() {
 
   const handleMeetSomeoneNew = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/users/random?currentUserId=${currentUser?._id}`);
+      const res = await axios.get(`/api/users/random?currentUserId=${currentUser?._id}`);
       setRandomUser(res.data);
     } catch (err) {
       console.error(err);

@@ -20,7 +20,7 @@ function Chat() {
     setCurrentUser(user);
 
     // Fetch existing chat history from backend
-    axios.get(`http://localhost:5000/api/chat/history/${user._id}`)
+    axios.get(`/api/chat/history/${user._id}`)
       .then(res => {
         if (res.data && res.data.messages && res.data.messages.length > 0) {
           const formattedMessages = res.data.messages.map((m, idx) => ({
@@ -68,7 +68,7 @@ function Chat() {
     setIsTyping(true);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/chat/ai', {
+      const res = await axios.post('/api/chat/ai', {
         userId: currentUser._id,
         message: userMsg,
         userName: currentUser.name
